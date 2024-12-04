@@ -14,4 +14,9 @@ sealed class ApError : Exception() {
      * Represents an API error.
      */
     data class ApiError(val info: String) : ApError()
+
+    /**
+     * Represents an error when API KEY is missing.
+     */
+    data class NotInitialized(val info: String) : ApError()
 }
