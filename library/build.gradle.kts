@@ -11,8 +11,9 @@ plugins {
     alias(libs.plugins.skie)
 }
 
-group = "com.startappz.apparition"
+group = "com.startappz"
 version = "0.0.1"
+val artifactId = "apparition-sdk"
 val sdkName = "ApparitionSDK"
 
 
@@ -81,31 +82,27 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "library", version.toString())
+    coordinates(group.toString(), artifactId, version.toString())
 
     pom {
         name = sdkName
         description = "Apparition SDK"
         inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        url = "https://github.com/Startappz/apparition-link-sdk"
         licenses {
-            license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
-            }
+
         }
         developers {
             developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
+                id = "StartAppz"
+                name = "StartAppz Engineering Team"
+                url = "https://github.com/Startappz/apparition-link-sdk"
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/Startappz/apparition-link-sdk"
+            connection = "scm:git:git://github.com/Startappz/apparition-link-sdk.git"
+            developerConnection = "scm:git:ssh://git@github.com:Startappz/apparition-link-sdk.git"
         }
     }
 }
