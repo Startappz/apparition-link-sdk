@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.skie)
 }
 
-group = "com.startappz.apparition"
+group = "link.apparition"
 version = "0.0.1"
 val artifactId = "sdk"
 val sdkName = "ApparitionSDK"
