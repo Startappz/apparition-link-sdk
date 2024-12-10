@@ -11,9 +11,9 @@ plugins {
     alias(libs.plugins.skie)
 }
 
-group = "com.startappz"
+group = "com.startappz.apparition"
 version = "0.0.1"
-val artifactId = "apparition-sdk"
+val artifactId = "sdk"
 val sdkName = "ApparitionSDK"
 
 
@@ -90,7 +90,11 @@ mavenPublishing {
         inceptionYear = "2024"
         url = "https://github.com/Startappz/apparition-link-sdk"
         licenses {
-
+            license {
+                name = "MPL-2.0"
+                url = "https://www.mozilla.org/en-US/MPL/2.0/"
+                distribution = "https://www.mozilla.org/en-US/MPL/2.0/"
+            }
         }
         developers {
             developer {
