@@ -11,20 +11,22 @@ plugins {
     alias(libs.plugins.skie)
 }
 
+val LIBRARY_VERSION: String by project
+
 group = "link.apparition"
-version = "0.0.1"
+version = LIBRARY_VERSION
 val artifactId = "sdk"
 val sdkName = "ApparitionSDK"
 
 
 kotlin {
+    jvmToolchain(17)
     val xcf = XCFramework(sdkName)
 
     androidTarget {
         publishLibraryVariants("release")
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_1_8)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
     listOf(

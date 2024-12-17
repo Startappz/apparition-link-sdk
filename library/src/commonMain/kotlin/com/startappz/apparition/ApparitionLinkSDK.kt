@@ -9,7 +9,7 @@ import com.startappz.apparition.utils.ApLogger
 /**
  * SDK initialization class.
  */
-object ApparitionLinkSdk {
+object ApparitionLinkSDK {
     private var apiKey: String? = null
 
     private val api: ApApi by lazy {
@@ -20,7 +20,7 @@ object ApparitionLinkSdk {
      * Initializes the SDK with an API key.
      */
     fun init(apiKey: String) {
-        ApparitionLinkSdk.apiKey = apiKey
+        ApparitionLinkSDK.apiKey = apiKey
     }
 
     /**
@@ -33,7 +33,8 @@ object ApparitionLinkSdk {
     /**
      * Expands a URL by return it's content.
      */
-    suspend fun expand(url: String): Result<String> {
+    @Throws(Exception::class)
+    suspend fun expand(url: String): String {
         return api.expand(url)
     }
 

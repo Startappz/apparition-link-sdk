@@ -8,5 +8,6 @@ internal interface ApApi {
     /**
      * Expands a given URL content.
      */
-    suspend fun expand(url: String): Result<String>
+    @Throws(Exception::class)
+    suspend fun expand(url: String): String
 }
