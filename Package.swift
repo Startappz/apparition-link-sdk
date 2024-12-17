@@ -12,8 +12,8 @@ let package = Package(
    targets: [
       .binaryTarget(
          name: "ApparitionSDK",
-         url: "https://github.com/Startappz/apparition-link-sdk/releases/download/release%2F0.0.1/ApparitionSDK.xcframework.zip",
-         checksum: "d884621cf82c0bf6bd1e3ca101ad88cd9d35950f98ebbb0369d8b037488bc861"
+         url: "https://github.com/Startappz/apparition-link-sdk/releases/download/release%2F0.0.2/ApparitionSDK.xcframework.zip",
+         checksum: "90762a0a7f41bd8b1395dec142e77cdd7e51561498b395e70b3d7dc59ca3d5a5"
         ),
    ]
 )
