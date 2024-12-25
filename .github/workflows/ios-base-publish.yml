@@ -9,7 +9,7 @@ on:
       publish-tasks:
         description: By default, the tasks will publish Android AARs and Xcode frameworks. For iOS-only builds, pass in 'kmmBridgePublish'.
         required: false
-        default: "publishKotlinMultiplatformPublicationToGitHubPackagesRepository kmmBridgePublish"
+        default: "kmmBridgePublish"
         type: string
 
 permissions:
