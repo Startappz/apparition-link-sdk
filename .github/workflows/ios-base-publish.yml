@@ -1,4 +1,4 @@
-name: Base-Publish
+name: io-base-publish
 on:
   workflow_call:
     inputs:
