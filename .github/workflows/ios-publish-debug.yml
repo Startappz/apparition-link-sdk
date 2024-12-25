@@ -1,0 +1,14 @@
+# Publish a build for development. The Xcode framework is debuggable.
+name: KMMBridge-Debug
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  call-publish:
+    uses: ./.github/workflows/ios-base-publish.yml
+    with:
+      build-debug: true

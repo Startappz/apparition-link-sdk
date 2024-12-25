@@ -1,27 +1,20 @@
 import co.touchlab.skie.configuration.DefaultArgumentInterop
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kmmbridge)
     alias(libs.plugins.vanniktech.mavenPublish)
     alias(libs.plugins.skie)
 }
 
-val LIBRARY_VERSION: String by project
-
-group = "link.apparition"
-version = LIBRARY_VERSION
 val artifactId = "sdk"
 val sdkName = "ApparitionSDK"
 
-
 kotlin {
     jvmToolchain(17)
-    val xcf = XCFramework(sdkName)
 
     androidTarget {
         publishLibraryVariants("release")
@@ -37,7 +30,6 @@ kotlin {
         it.binaries.framework {
             binaryOption("bundleId", group.toString())
             baseName = sdkName
-            xcf.add(this)
             isStatic = true
         }
     }
@@ -64,6 +56,13 @@ kotlin {
                 implementation(libs.kotlin.test)
             }
         }
+    }
+}
+
+kmmbridge {
+    gitHubReleaseArtifacts()
+    spm(swiftToolVersion = "5.8") {
+        iOS { v("14") }
     }
 }
 
@@ -113,8 +112,9 @@ mavenPublishing {
     }
 }
 
+
+
 skie {
-//    isEnabled.set(false)
     build {
         produceDistributableFramework()
     }
