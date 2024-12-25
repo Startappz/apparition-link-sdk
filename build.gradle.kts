@@ -7,9 +7,9 @@ plugins {
 }
 
 subprojects {
-    val GROUP_NAME: String by project
+    val GROUP: String by project
     val LIBRARY_VERSION: String by project
 
-    group = GROUP_NAME
+    group = GROUP
     version = LIBRARY_VERSION
 }

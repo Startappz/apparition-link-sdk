@@ -83,8 +83,6 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), artifactId, version.toString())
-
     pom {
         name = sdkName
         description = "Apparition SDK"
@@ -111,8 +109,6 @@ mavenPublishing {
         }
     }
 }
-
-
 
 skie {
     build {
