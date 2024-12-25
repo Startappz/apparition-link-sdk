@@ -1,5 +1,5 @@
 # Publish a build for release.
-name: KMMBridge-Debug
+name: ios-publish-release
 on:
   workflow_dispatch:
 
