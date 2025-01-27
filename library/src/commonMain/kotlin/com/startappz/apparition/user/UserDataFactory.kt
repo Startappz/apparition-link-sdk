@@ -1,17 +1,11 @@
 package com.startappz.apparition.user
 
 import com.startappz.apparition.models.UserData
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Factory class for collecting user data to be used to identify the user .
  */
-internal object UserDataFactory {
-
-    /**
-     * Creates a [UserData] object
-     */
-    fun create(): UserData = UserData(
-        os = getPlatform().name,
-        osVersion = getPlatform().version
-    )
+object UserDataFactory {
+    val userData: Flow<UserData> = generateUserData()
 }

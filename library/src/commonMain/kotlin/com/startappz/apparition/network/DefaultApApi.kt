@@ -3,7 +3,6 @@ package com.startappz.apparition.network
 import com.startappz.apparition.ApparitionLinkSDK
 import com.startappz.apparition.models.ApError
 import com.startappz.apparition.platform.isDebug
-import com.startappz.apparition.utils.ApLogLevel
 import com.startappz.apparition.utils.ApLogger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -23,7 +22,7 @@ internal class DefaultApApi(
      * Concrete implementation of the expand method.
      */
     override suspend fun expand(url: String): String {
-        ApLogger.log(level = ApLogLevel.DEBUG, message = "Requesting URL: $url")
+        ApLogger.d(message = "Requesting URL: $url")
         return try {
             val baseUrl = if (isDebug) "$BASE_URL_DEBUG/expand" else "$BASE_URL/expand"
 
@@ -34,17 +33,13 @@ internal class DefaultApApi(
 
             if (httpResponse.status.value in 200..299) {
                 val body: String = httpResponse.body()
-                ApLogger.log(level = ApLogLevel.DEBUG, message = "Response body: $body")
+                ApLogger.d(message = "Response body: $body")
                 body
             } else {
-                ApLogger.log(
-                    level = ApLogLevel.ERROR,
-                    message = "Request failed with status: ${httpResponse.status}"
-                )
-                throw ApError.ApiError("Request failed with status: ${httpResponse.status}")
+                throw ApError.ApiError("Request failed with status: ${httpResponse.status.value}")
             }
         } catch (exception: Exception) {
-            ApLogger.log(level = ApLogLevel.ERROR, message = "Request failed with exception: ${exception.message}")
+            ApLogger.e(message = "Request failed with exception: ${exception.message}")
             throw ApError.NetworkError("Request failed with exception: ${exception.message}")
         }
     }

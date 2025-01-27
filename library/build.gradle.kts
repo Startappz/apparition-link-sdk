@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.skie)
 }
 
-val artifactId = "sdk"
 val sdkName = "ApparitionSDK"
 
 kotlin {
@@ -49,6 +48,9 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.androidx.startup)
+            implementation(libs.android.installreferrer)
+            implementation(libs.androidx.core)
         }
 
         val commonTest by getting {

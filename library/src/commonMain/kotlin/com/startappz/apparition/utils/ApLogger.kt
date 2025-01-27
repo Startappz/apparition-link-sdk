@@ -7,11 +7,17 @@ internal object ApLogger {
         apLogLevel = level
     }
 
-    fun log(level: ApLogLevel, message: String) {
-        if (level.priority >= apLogLevel.priority) {
+    private fun log(level: ApLogLevel, message: String) {
+        if (apLogLevel != ApLogLevel.OFF && level.priority <= apLogLevel.priority) {
             println("[${level.name}] $message")
         }
     }
+
+    fun e(message: String) = log(ApLogLevel.ERROR, message)
+
+    fun i(message: String) = log(ApLogLevel.INFO, message)
+
+    fun d(message: String) = log(ApLogLevel.DEBUG, message)
 }
 
 enum class ApLogLevel(val priority: Int) {

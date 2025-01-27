@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ApparitionSDK"
 include(":library")
+include(":sample")
