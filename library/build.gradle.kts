@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.kmmbridge)
     alias(libs.plugins.vanniktech.mavenPublish)
     alias(libs.plugins.skie)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val sdkName = "ApparitionSDK"
@@ -35,10 +37,14 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.bundles.ktor.common)
 
             implementation(libs.kotlinx.serialization.json)
+
+            implementation(libs.androidx.datastore)
+            implementation(libs.androidx.datastore.preferences)
         }
 
         iosMain.dependencies {
@@ -51,6 +57,7 @@ kotlin {
             implementation(libs.androidx.startup)
             implementation(libs.android.installreferrer)
             implementation(libs.androidx.core)
+            compileOnly(libs.androidx.ads.identifier)
         }
 
         val commonTest by getting {

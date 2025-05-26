@@ -53,10 +53,12 @@ internal class GoogleInstallReferrers(
             try {
                 val result = client.installReferrer
                 val referrerDetails = ReferrerDetails(
-                    Keys.GooglePlay.key,
-                    result.installBeginTimestampSeconds,
-                    result.installReferrer,
-                    result.referrerClickTimestampSeconds
+                    appStore = Keys.GooglePlay.key,
+                    latestInstallTimestamp = result.installBeginTimestampSeconds,
+                    latestRawReferrer = result.installReferrer,
+                    latestClickTimestamp = result.referrerClickTimestampSeconds,
+                    latestInstallTimestampServer = result.installBeginTimestampServerSeconds,
+                    latestClickTimestampServer = result.referrerClickTimestampServerSeconds,
                 )
                 ApLogger.i("Latest Install Referrer: $referrerDetails")
                 continuation.resume(referrerDetails)

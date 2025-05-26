@@ -14,13 +14,16 @@ import platform.UIKit.UIDevice
 private class IOSPlatform: Platform {
     override val name: String = UIDevice.currentDevice.systemName()
     override val version: String = UIDevice.currentDevice.systemVersion
-    override val adIdentifier: String = adIdentifier()
+
+    override suspend fun adIdentifier(): String? {
+        return ASIdentifierManager.sharedManager().advertisingIdentifier.UUIDString
+    }
 }
 
 /**
  * Returns the iOS platform information.
  */
-internal actual fun getPlatform(): Platform = IOSPlatform()
+internal actual suspend fun getPlatform(platformContext: PlatformContext,): Platform = IOSPlatform()
 
 fun requestTrackingPermission(callback: (Boolean) -> Unit) {
     ATTrackingManager.requestTrackingAuthorizationWithCompletionHandler { status ->
@@ -32,10 +35,6 @@ fun requestTrackingPermission(callback: (Boolean) -> Unit) {
             else -> callback(false)
         }
     }
-}
-
-fun adIdentifier(): String {
-    return ASIdentifierManager.sharedManager().advertisingIdentifier.UUIDString
 }
 
 actual abstract class PlatformContext private constructor() {
