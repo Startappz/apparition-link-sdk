@@ -1,0 +1,24 @@
+{
+  "object" : {
+    "artifacts" : [
+      {
+        "kind" : "xcframework",
+        "packageRef" : {
+          "identity" : "apparitionsdk",
+          "kind" : "root",
+          "location" : "/Users/hisham/Development/StartAppz/ApparitionSDK",
+          "name" : "ApparitionSDK"
+        },
+        "path" : "/Users/hisham/Development/StartAppz/ApparitionSDK/library/build/XCFrameworks/release/ApparitionSDK.xcframework",
+        "source" : {
+          "type" : "local"
+        },
+        "targetName" : "ApparitionSDK"
+      }
+    ],
+    "dependencies" : [
+
+    ]
+  },
+  "version" : 6
+}
