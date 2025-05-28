@@ -1,13 +1,11 @@
 package com.startappz.apparition.network
 
-import com.startappz.apparition.ApparitionLinkSDK
 import com.startappz.apparition.models.ApError
 import com.startappz.apparition.platform.isDebug
 import com.startappz.apparition.utils.ApLogger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 
@@ -18,20 +16,20 @@ internal class DefaultApApi(
     private val httpClient: HttpClient
 ) : ApApi {
 
+    private val baseUrl = if (isDebug) BASE_URL_STAGING else BASE_URL
+
     /**
      * Concrete implementation of the expand method.
      */
     override suspend fun expand(url: String): String {
-        ApLogger.d(message = "Requesting URL: $url")
-        return try {
-            val baseUrl = if (isDebug) "$BASE_URL_DEBUG/expand" else "$BASE_URL/expand"
+        ApLogger.d(message = "Expanding: $url")
 
-            val httpResponse: HttpResponse = httpClient.get("$baseUrl/expand") {
-                header("X-API-TOKEN", ApparitionLinkSDK.getApiKey())
+        return try {
+            val httpResponse: HttpResponse = httpClient.get("$baseUrl/links/expand") {
                 parameter("url", url)
             }
 
-            if (httpResponse.status.value in 200..299) {
+            if (httpResponse.isSuccess()) {
                 val body: String = httpResponse.body()
                 ApLogger.d(message = "Response body: $body")
                 body
@@ -45,7 +43,11 @@ internal class DefaultApApi(
     }
 
     companion object {
-        private const val BASE_URL = "https://apparition.link/api/v1/links"
-        private const val BASE_URL_DEBUG = "http://localhost:3000/api/v1/links"
+        private const val BASE_URL = "https://apparition.link/api/v1"
+        private const val BASE_URL_STAGING = "https://stg.apparition.link/api/v1"
     }
+}
+
+private fun HttpResponse.isSuccess(): Boolean {
+    return status.value in 200..299
 }
