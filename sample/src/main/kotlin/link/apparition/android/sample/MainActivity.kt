@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             UserDataFactory.userData.collect {
                                 user = it
                             }
-                            ApparitionLinkSDK.expand("https://eez8.stpz.link/CMXa8682gkn")
+                            ApparitionLinkSDK.expand("https://peog.stpz-stg.link/dummy")
                         }.onSuccess {
                             val json = JSONObject(it)
                             status = "Success\n${json}"
