@@ -11,6 +11,7 @@ plugins {
 }
 
 val sdkName = "ApparitionSDK"
+val iosSdkName = "Apparition" // Base name for iOS SDK to avoid import conflicts with the project name.
 
 kotlin {
     jvmToolchain(17)
@@ -28,7 +29,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             binaryOption("bundleId", group.toString())
-            baseName = sdkName
+            baseName = iosSdkName
             isStatic = true
         }
     }
