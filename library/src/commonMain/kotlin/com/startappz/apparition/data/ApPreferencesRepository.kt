@@ -3,6 +3,7 @@ package com.startappz.apparition.data
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.startappz.apparition.ApparitionLinkSDK
 import com.startappz.apparition.models.AttributionLevel
@@ -19,10 +20,17 @@ import kotlinx.coroutines.launch
  * Repository for Apparition SDK preferences.
  */
 internal object ApPreferencesRepository {
+
+
     private val preferences = createApPreferences { getApPreferencesPath() }
 
     val userIdKey = stringPreferencesKey("user_id")
     val attributionLevelKey = intPreferencesKey("attribution_level")
+    val keyReferrerClickTs = longPreferencesKey("referrer_click_ts")
+    val keyInstallBeginTs = longPreferencesKey("key_install_begin_ts")
+    val keyGooglePlayInstallReferrerExtra = stringPreferencesKey("key_google_play_install_referrer_extra")
+    val keyInstallBeginServerTs = longPreferencesKey("key_install_begin_server_ts")
+    val keyReferrerClickServerTs = longPreferencesKey("key_referrer_click_server_ts")
 
     fun userId(): Flow<String?> = get(userIdKey)
 
@@ -103,5 +111,16 @@ internal object ApPreferencesRepository {
     fun getAnonID(): String {
         //TODO: Implement the logic to get the anon ID
         return ""
+    }
+
+    fun setIsMetaClickThrough(clickThrough: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    fun setAppLink(string: String) {}
+    fun setIsFullAppConversion(isFullAppConversion: Boolean) {}
+    fun setLinkClickIdentifier(installID: String?) {}
+    fun setGoogleSearchInstallIdentifier(string: String) {}
+    fun setAppStoreSource(store: String) {
     }
 }
