@@ -1,8 +1,13 @@
 package link.apparition.android.sample
 
 import android.content.Context
+import android.util.Log
 import com.startappz.apparition.ApparitionLinkSDK
+import com.startappz.apparition.models.ReferrerDetails
+import com.startappz.apparition.models.UserData
+import com.startappz.apparition.user.UserDataFactory
 import com.startappz.apparition.utils.ApLogLevel
+import kotlinx.coroutines.flow.first
 import link.apparition.sdk.sample.BuildConfig
 
 object SdkWrapper {
@@ -34,6 +39,20 @@ object SdkWrapper {
             onFailure = {
                 it.printStackTrace()
                 "failed to register open"
+            }
+        )
+    }
+
+    suspend fun registerAppInstall() {
+        return kotlin.runCatching {
+            ApparitionLinkSDK.register(UserDataFactory.userData.first())
+        }.fold(
+            onSuccess = {
+                Log.i("SdkWrapper", "registerAppInstall: success")
+            },
+            onFailure = {
+                it.printStackTrace()
+                Log.e("SdkWrapper", "registerAppInstall: Failed")
             }
         )
     }

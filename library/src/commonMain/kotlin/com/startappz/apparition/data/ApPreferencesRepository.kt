@@ -101,6 +101,7 @@ internal object ApPreferencesRepository {
     }
 
     fun getAnonID(): String {
-        TODO("Not yet implemented")
+        //TODO: Implement the logic to get the anon ID
+        return ""
     }
 }

@@ -6,6 +6,7 @@ import com.startappz.apparition.models.ApError
 import com.startappz.apparition.models.ApEvent
 import com.startappz.apparition.models.AttributionLevel
 import com.startappz.apparition.models.SdkState
+import com.startappz.apparition.models.UserData
 import com.startappz.apparition.models.response.OpenRequestResponse
 import com.startappz.apparition.network.ApApi
 import com.startappz.apparition.user.PlatformContext
@@ -123,6 +124,15 @@ object ApparitionLinkSDK {
     suspend fun expand(url: String): String {
         getApiKey()
         return api.expand(url)
+    }
+
+    /**
+     * Register the device on backend during app installation
+     */
+    @Throws(Exception::class)
+    suspend fun register(userData: UserData) {
+        getApiKey()
+        api.register(userData)
     }
 
     @Throws(ApError.NotInitialized::class)

@@ -15,7 +15,7 @@ data class OpenRequestResponse(
     @SerialName("data")
     val dataContent: String,
     @SerialName("browser_fingerprint_id")
-    val browserFingerprintId: String
+    val browserFingerprintId: String? = ""
 )
 
 @Serializable

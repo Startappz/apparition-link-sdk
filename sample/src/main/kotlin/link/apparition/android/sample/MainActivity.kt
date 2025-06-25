@@ -89,6 +89,18 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 Text(text = "Expand")
                             }
+
+                            Button(
+                                onClick = {
+                                    scope.launch {
+                                        showLoading = true
+                                        SdkWrapper.registerAppInstall()
+                                        showLoading = false
+                                    }
+                                }
+                            ) {
+                                Text(text = "Register App Install")
+                            }
                         }
                     }
                 }
