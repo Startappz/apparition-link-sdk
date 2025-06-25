@@ -4,17 +4,21 @@ import android.annotation.SuppressLint
 import android.app.UiModeManager
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.provider.Settings
+import com.startappz.apparition.utils.DeviceUtil
+import java.util.Locale
+import java.util.UUID
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 internal class DeviceUtils(
     private val context: Context
-) {
+): DeviceUtil {
 
     @OptIn(ExperimentalUuidApi::class)
     @SuppressLint("HardwareIds")
-    fun deviceId(): Pair<String?, Boolean> {
+    override fun deviceId(): Pair<String?, Boolean> {
         var id = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         val isRealId = id != null
 
@@ -25,7 +29,7 @@ internal class DeviceUtils(
         return id to isRealId
     }
 
-    fun uiMode(): String {
+    override fun uiMode(): String {
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         return when (uiModeManager.currentModeType) {
             Configuration.UI_MODE_TYPE_NORMAL -> "normal"
@@ -39,11 +43,47 @@ internal class DeviceUtils(
         }
     }
 
-    fun getScreenInfo(): Triple<Int, Int, Int> {
+    override fun getScreenInfo(): Triple<Int, Int, Int> {
         val displayMetrics = context.resources.displayMetrics
         val dpi = displayMetrics.densityDpi
         val width = displayMetrics.widthPixels
         val height = displayMetrics.heightPixels
         return Triple(dpi, width, height)
+    }
+
+    override fun getPhoneBrand(): String {
+        return Build.BRAND
+    }
+
+    override fun getPhoneModel(): String {
+        return Build.MODEL
+    }
+
+    override fun getOperatingSystemName(): String {
+        return "Android"
+    }
+
+    override fun getOperatingSystemVersion(): Int {
+        return Build.VERSION.SDK_INT
+    }
+
+    override fun getOperatingSystemVersionReleaseNumber(): Int {
+        return Build.VERSION.RELEASE.toInt()
+    }
+
+    override fun getDeviceCountryCode(): String {
+        return Locale.getDefault().country
+    }
+
+    override fun getDeviceCpuType(): String {
+        return Build.SUPPORTED_ABIS.firstOrNull() ?: "Unknown"
+    }
+
+    override fun getDeviceLocale(): String {
+        return Locale.getDefault().toLanguageTag()
+    }
+
+    fun getAnonymousAdId(): String {
+        return UUID.randomUUID().toString()
     }
 }

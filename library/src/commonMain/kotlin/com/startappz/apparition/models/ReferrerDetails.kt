@@ -5,5 +5,7 @@ data class ReferrerDetails(
     var latestInstallTimestamp: Long,
     var latestRawReferrer: String?,
     var latestClickTimestamp: Long,
+    val latestInstallTimestampServer: Long,
+    val latestClickTimestampServer: Long,
     var isClickThrough: Boolean = true
 )

@@ -18,6 +18,10 @@ internal object ApLogger {
     fun i(message: String) = log(ApLogLevel.INFO, message)
 
     fun d(message: String) = log(ApLogLevel.DEBUG, message)
+
+    fun w(message: String) = log(ApLogLevel.WARNING, message)
+
+    fun v(message: String) = log(ApLogLevel.INFO, message)
 }
 
 enum class ApLogLevel(val priority: Int) {
@@ -25,6 +29,7 @@ enum class ApLogLevel(val priority: Int) {
     ERROR(1),
     INFO(2),
     DEBUG(3),
+    WARNING(4),
 }
 
 internal expect fun platformLog(level: ApLogLevel, message: String)
