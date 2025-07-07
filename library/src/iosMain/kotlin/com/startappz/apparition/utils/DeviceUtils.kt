@@ -55,8 +55,8 @@ class DeviceUtils : DeviceUtil {
         return "iOS"
     }
 
-    override fun getOperatingSystemVersion(): Int {
-        return UIDevice.currentDevice.systemVersion.toInt()
+    override fun getOperatingSystemVersion(): String {
+        return UIDevice.currentDevice.systemVersion
     }
 
     override fun getOperatingSystemVersionReleaseNumber(): Int {

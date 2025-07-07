@@ -32,7 +32,7 @@ data class UserDataApiReqBody(
     @SerialName("locale") val locale: String,
     @SerialName("model") val model: String,
     @SerialName("os") val os: String,
-    @SerialName("os_version") val osVersion: Int,
+    @SerialName("os_version") val osVersion: String,
     @SerialName("os_version_android") val osVersionAndroid: String?,
     @SerialName("previous_update_time") val previousUpdateTime: Long?,
     @SerialName("screen_dpi") val screenDpi: Int,

@@ -7,7 +7,7 @@ interface DeviceUtil {
     fun getPhoneBrand(): String
     fun getPhoneModel(): String
     fun getOperatingSystemName(): String
-    fun getOperatingSystemVersion(): Int
+    fun getOperatingSystemVersion(): String
     fun getOperatingSystemVersionReleaseNumber(): Int
     fun getDeviceCountryCode(): String
     fun getDeviceCpuType(): String

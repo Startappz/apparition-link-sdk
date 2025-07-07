@@ -8,7 +8,7 @@ data class UserData(
     val phoneBrand: String,
     val phoneModel: String,
     val osName: String,
-    val osVersion: Int,
+    val osVersion: String,
     val apiLevel: Int,
     val countryCode: String, // iso 2
 //    val languageCode: String, // iso 2

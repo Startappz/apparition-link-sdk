@@ -63,8 +63,8 @@ internal class DeviceUtils(
         return "Android"
     }
 
-    override fun getOperatingSystemVersion(): Int {
-        return Build.VERSION.SDK_INT
+    override fun getOperatingSystemVersion(): String {
+        return Build.VERSION.SDK_INT.toString()
     }
 
     override fun getOperatingSystemVersionReleaseNumber(): Int {
