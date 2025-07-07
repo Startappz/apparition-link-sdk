@@ -24,4 +24,30 @@ class SdkWrapper {
             throw error
         }
     }
+
+    static func register() async throws -> String {
+        do {
+            let collectedData = await collectFirstUserDataFromKotlin()
+
+            if let userData = collectedData {
+                try await ApparitionLinkSDK.shared.register(userData: userData)
+                return "success registration"
+            } else {
+                throw NSError(domain: "AppError",
+                              code: 1001,
+                              userInfo: [NSLocalizedDescriptionKey: "No user data available."])
+            }
+        } catch {
+            print("Error during registration: \(error)")
+            throw error
+        }
+    }
+
+
+    private static func collectFirstUserDataFromKotlin() async -> UserData? {
+        do {
+            let firstUserData = await Apparition.UserDataFactory().userData.first(where: { _ in true })
+            return firstUserData
+        }
+    }
 }

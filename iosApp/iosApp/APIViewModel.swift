@@ -32,4 +32,15 @@ class APIViewModel: ObservableObject {
             self.result = .failure(error)
         }
     }
+
+    @MainActor
+    func register() async {
+        self.result = .loading
+        do {
+            let response = try await SdkWrapper.register()
+            self.result = .success(response)
+        } catch {
+            self.result = .failure(error)
+        }
+    }
 }
